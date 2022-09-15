@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const HomeComponent = styled.div`
+export const PageDefaultComponent = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;

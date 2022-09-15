@@ -1,11 +1,11 @@
 import React from 'react'
-import { HomeComponent } from '../styles/PageStyles/HomeStyle'
+import { PageDefaultComponent } from '../styles/PageStyles/DefaultStyle'
 
 function Home() {
   return (
-    <HomeComponent>
+    <PageDefaultComponent>
       <div>where am i?</div>
-    </HomeComponent>
+    </PageDefaultComponent>
   )
 }
 
