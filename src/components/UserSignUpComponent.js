@@ -6,8 +6,9 @@ import {
   faKey,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons'
-
 import { SignUpFunction } from '../styles/componentsStyles/SignUp/SignUpStyles'
+import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
 
 function UserSignUpComponent() {
   const [email, setEmail] = useState('')
@@ -26,9 +27,26 @@ function UserSignUpComponent() {
     }
   }
 
+  const Token = useSelector((state) => state)
+  const dispatch = useDispatch()
+
   const onSubmit = (e) => {
     e.preventDefault()
+
+    axios
+      .post('https://mycroft-test-api.herokuapp.com/sign-up', {
+        email: `${email}`,
+        password: `${password}`,
+        mobile: `${phone}`,
+      })
+      .then((res) => {
+        console.log(res)
+        const token = res.data.token
+        dispatch({ type: 'Login', token })
+      })
   }
+
+  console.log('Token', Token)
   return (
     <SignUpFunction>
       <div className="SignUpFrameBox">
