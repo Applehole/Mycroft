@@ -19,7 +19,7 @@ function Navigation() {
           <Link className="LoginLink" to="/Login">
             로그인
           </Link>
-          <Link className="LoginLink" to="/signup">
+          <Link className="LoginLink" to="/sign-up">
             회원가입
           </Link>
           <Link className="LoginLink" to="/mypage">
