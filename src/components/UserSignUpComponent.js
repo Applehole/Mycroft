@@ -9,6 +9,7 @@ import {
 import { SignUpFunction } from '../styles/componentsStyles/SignUp/SignUpStyles'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
+import { validEmail } from '../modules/validation'
 
 function UserSignUpComponent() {
   const [email, setEmail] = useState('')
@@ -32,18 +33,30 @@ function UserSignUpComponent() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
-    axios
-      .post('https://mycroft-test-api.herokuapp.com/sign-up', {
-        email: `${email}`,
-        password: `${password}`,
-        mobile: `${phone}`,
-      })
-      .then((res) => {
-        console.log(res)
-        const token = res.data.token
-        dispatch({ type: 'Login', token })
-      })
+    console.log('validEmail(email)', validEmail(email))
+    if (validEmail(email)) {
+      if (password.length >= 8 && password.length <= 15) {
+        if (password === CheckPassword) {
+          axios
+            .post('https://mycroft-test-api.herokuapp.com/sign-up', {
+              email: `${email}`,
+              password: `${password}`,
+              mobile: `${phone}`,
+            })
+            .then((res) => {
+              console.log(res)
+              const token = res.data.token
+              dispatch({ type: 'Login', token })
+            })
+        } else {
+          alert('비밀번호 불일치')
+        }
+      } else {
+        alert('비밀번호 확인')
+      }
+    } else {
+      alert('이메일 확인')
+    }
   }
 
   console.log('Token', Token)
