@@ -19,7 +19,7 @@ function Navigation() {
           </Link>
           {Token.length ? (
             <>
-              <Link className="LoginLink" to="/mypage">
+              <Link className="LoginLink" to="/mypage/order">
                 마이페이지
               </Link>
               <Link className="LoginLink" to="/logout">
