@@ -47,6 +47,7 @@ export const SignUpFunction = styled.div`
   }
 
   .SignUpFormIdIcon {
+    width: 30px;
     margin: 10px 20px;
   }
 
@@ -54,6 +55,8 @@ export const SignUpFunction = styled.div`
     width: 100%;
     background-color: #b3b3b3;
     font-size: 1.2em;
+    outline: none;
+    border: none;
   }
 
   .SignUpFormPWDiv {
@@ -65,6 +68,7 @@ export const SignUpFunction = styled.div`
   }
 
   .SignUpFormPWIcon {
+    width: 30px;
     margin: 10px 20px;
   }
 
@@ -72,6 +76,8 @@ export const SignUpFunction = styled.div`
     width: 100%;
     background-color: #b3b3b3;
     font-size: 1.2em;
+    outline: none;
+    border: none;
   }
 
   .SignUpFormCheckPWDiv {
@@ -83,6 +89,7 @@ export const SignUpFunction = styled.div`
   }
 
   .SignUpFormCheckPWIcon {
+    width: 30px;
     margin: 10px 20px;
   }
 
@@ -90,6 +97,8 @@ export const SignUpFunction = styled.div`
     width: 100%;
     background-color: #b3b3b3;
     font-size: 1.2em;
+    outline: none;
+    border: none;
   }
 
   .SignUpFormPhoneDiv {
@@ -101,6 +110,7 @@ export const SignUpFunction = styled.div`
   }
 
   .SignUpFormPhoneIcon {
+    width: 30px;
     margin: 10px 20px;
   }
 
@@ -108,6 +118,8 @@ export const SignUpFunction = styled.div`
     width: 100%;
     background-color: #b3b3b3;
     font-size: 1.2em;
+    outline: none;
+    border: none;
     ::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
@@ -129,5 +141,13 @@ export const SignUpFunction = styled.div`
   .SignUpFormButton:hover {
     letter-spacing: 2px;
     transform: scale(1.1);
+  }
+
+  .redFrame {
+    border: 2px solid red;
+  }
+
+  .greenFrame {
+    border: 3px solid green;
   }
 `

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faUser,
@@ -8,34 +8,48 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { SignUpFunction } from '../styles/componentsStyles/SignUp/SignUpStyles'
 import axios from 'axios'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { validEmail } from '../modules/validation'
+import { useNavigate } from 'react-router-dom'
 
 function UserSignUpComponent() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [CheckPassword, setCheckPassword] = useState('')
   const [phone, setPhone] = useState('')
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+  const checkPasswordRef = useRef(null)
+  let navigate = useNavigate()
+
   const onChange = (e) => {
     if (e.target.name === 'email') {
       setEmail(e.target.value)
     } else if (e.target.name === 'password') {
       setPassword(e.target.value)
+      if (e.target.value.length < 8) {
+        passwordRef.current.className = 'SignUpFormPWInput redFrame'
+      } else {
+        passwordRef.current.className = 'SignUpFormPWInput greenFrame'
+      }
     } else if (e.target.name === 'CheckPassword') {
       setCheckPassword(e.target.value)
+      if (e.target.value !== password) {
+        checkPasswordRef.current.className = 'SignUpFormCheckPWInput redFrame'
+      } else {
+        checkPasswordRef.current.className = 'SignUpFormCheckPWInput greenFrame'
+      }
     } else if (e.target.name === 'phone') {
       setPhone(e.target.value)
     }
   }
 
-  const Token = useSelector((state) => state)
   const dispatch = useDispatch()
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log('validEmail(email)', validEmail(email))
     if (validEmail(email)) {
-      if (password.length >= 8 && password.length <= 15) {
+      if (password.length >= 8) {
         if (password === CheckPassword) {
           axios
             .post('https://mycroft-test-api.herokuapp.com/sign-up', {
@@ -44,9 +58,9 @@ function UserSignUpComponent() {
               mobile: `${phone}`,
             })
             .then((res) => {
-              console.log(res)
               const token = res.data.token
               dispatch({ type: 'Login', token })
+              navigate('/')
             })
         } else {
           alert('비밀번호 불일치')
@@ -56,10 +70,18 @@ function UserSignUpComponent() {
       }
     } else {
       alert('이메일 확인')
+      emailRef.current.focus()
     }
   }
 
-  console.log('Token', Token)
+  const onClick = () => {
+    if (!validEmail(email)) {
+      emailRef.current.className = 'SignUpFormIdInput redFrame'
+    } else {
+      emailRef.current.className = 'SignUpFormIdInput greenFrame'
+    }
+  }
+
   return (
     <SignUpFunction>
       <div className="SignUpFrameBox">
@@ -73,6 +95,7 @@ function UserSignUpComponent() {
                 size="2x"
               />
               <input
+                ref={emailRef}
                 className="SignUpFormIdInput"
                 name="email"
                 type="text"
@@ -89,11 +112,14 @@ function UserSignUpComponent() {
                 size="2x"
               />
               <input
+                onClick={onClick}
+                ref={passwordRef}
                 className="SignUpFormPWInput"
                 name="password"
                 type="password"
                 placeholder="password"
                 required
+                maxLength={15}
                 value={password}
                 onChange={(e) => onChange(e)}></input>
             </div>
@@ -105,11 +131,14 @@ function UserSignUpComponent() {
                 size="2x"
               />
               <input
+                onClick={onClick}
+                ref={checkPasswordRef}
                 className="SignUpFormCheckPWInput"
                 name="CheckPassword"
                 type="password"
                 placeholder="CheckPassword"
                 required
+                maxLength={15}
                 value={CheckPassword}
                 onChange={(e) => onChange(e)}></input>
             </div>
@@ -121,6 +150,7 @@ function UserSignUpComponent() {
                 size="2x"
               />
               <input
+                onClick={onClick}
                 className="SignUpFormPhoneInput"
                 name="phone"
                 type="number"
