@@ -7,14 +7,17 @@ import { OrderListDiv } from '../styles/componentsStyles/Mypage/OrderListStyle'
 
 function OrderList() {
   const [content, setContect] = useState([])
+  const [ErrorPrevent, setErrorPrevent] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
-  const [totalPage, setTotalPage] = useState(3)
+  const [totalPage, setTotalPage] = useState(2) // 처음에는 3까지였지만 마지막 3번 페이지가 비어져있어서 2로 고쳤다.
 
   useEffect(() => {
     const userApiOrder = () => {
       setTimeout(function () {
         axios
-          .get(`https://mycroft-test-api.herokuapp.com/order?page=0`)
+          .get(
+            `https://mycroft-test-api.herokuapp.com/order?page=${currentPage}`,
+          )
           .then((res) => {
             setContect(res.data.content)
             setCurrentPage(res.data.currentPage)
@@ -23,7 +26,22 @@ function OrderList() {
       }, 1000)
     }
     userApiOrder()
-  }, [])
+  }, [ErrorPrevent])
+
+  const goToLeft = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+      setContect([])
+      setErrorPrevent((prev) => prev + 1)
+    }
+  }
+  const goToRight = () => {
+    if (currentPage < 2) {
+      setCurrentPage(currentPage + 1)
+      setContect([])
+      setErrorPrevent((prev) => prev + 1)
+    }
+  }
 
   return (
     <OrderListDiv>
@@ -33,9 +51,9 @@ function OrderList() {
             return <Items key={stuff.id} stuff={stuff} />
           })}
           <div className="PageDiv">
-            <button>왼쪽</button>
-            <div>{`${currentPage + 1}/${totalPage + 1}`}</div>
-            <button>오른쪽</button>
+            <button onClick={goToLeft}>왼쪽</button>
+            <div>{`${currentPage + 1}/${totalPage}`}</div>
+            <button onClick={goToRight}>오른쪽</button>
           </div>
         </>
       ) : (
