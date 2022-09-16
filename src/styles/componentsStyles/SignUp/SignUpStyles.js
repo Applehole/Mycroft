@@ -35,7 +35,6 @@ export const SignUpFunction = styled.div`
     grid-row: 1/6;
     text-align: center;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
   }
 
   .SignUpFormIdDiv {

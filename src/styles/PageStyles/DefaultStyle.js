@@ -6,4 +6,5 @@ export const PageDefaultComponent = styled.div`
   bottom: 0;
   width: 100%;
   height: 92vh;
+  background-color: aliceblue;
 `

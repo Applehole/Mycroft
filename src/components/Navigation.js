@@ -28,7 +28,7 @@ function Navigation() {
             </>
           ) : (
             <>
-              <Link className="LoginLink" to="/Login">
+              <Link className="LoginLink" to="/login">
                 로그인
               </Link>
               <Link className="LoginLink" to="/sign-up">
