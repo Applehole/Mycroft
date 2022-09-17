@@ -22,5 +22,9 @@ export const NavigationComponent = styled.div`
       color: white;
       margin: 5px;
     }
+    .LightLink {
+      color: red;
+      margin: 5px;
+    }
   }
 `

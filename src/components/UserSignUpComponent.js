@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faUser,
@@ -22,6 +22,12 @@ function UserSignUpComponent() {
   const checkPasswordRef = useRef(null)
   let navigate = useNavigate()
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({ type: 'COUNT/CHANGE', number: 2 })
+  }, []) // 그냥 넣으면 무한 리렌더링
+
   const onChange = (e) => {
     if (e.target.name === 'email') {
       setEmail(e.target.value)
@@ -43,8 +49,6 @@ function UserSignUpComponent() {
       setPhone(e.target.value)
     }
   }
-
-  const dispatch = useDispatch()
 
   const onSubmit = (e) => {
     e.preventDefault()
