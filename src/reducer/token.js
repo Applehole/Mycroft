@@ -1,9 +1,7 @@
-import { createStore } from 'redux'
+const Login = 'TOKEN/LOGIN'
+const Logout = 'TOKEN/LOGOUT'
 
-const Login = 'Login'
-const Logout = 'Logout'
-
-const reducer = (state = '', action) => {
+const token = (state = '', action) => {
   switch (action.type) {
     case Login:
       return action.token
@@ -13,7 +11,5 @@ const reducer = (state = '', action) => {
       return state
   }
 }
-
-const token = createStore(reducer)
 
 export default token

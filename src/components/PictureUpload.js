@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { PictureDiv } from '../styles/componentsStyles/Home/pictureUploadStyle'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function PictureUpload() {
@@ -9,6 +9,11 @@ function PictureUpload() {
   const imgRef = useRef()
   const Token = useSelector((state) => state)
   let navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({ type: 'COUNT/CHANGE', number: 0 })
+  }, [])
 
   const onChangeImage = () => {
     const reader = new FileReader()

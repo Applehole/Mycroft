@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { SignUpFunction } from '../styles/componentsStyles/SignUp/SignUpStyles'
@@ -26,8 +26,11 @@ function UserLoginComponent() {
       }
     }
   }
-
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({ type: 'COUNT/CHANGE', number: 1 })
+  }, []) // 그냥 넣으면 무한 리렌더링
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -40,7 +43,7 @@ function UserLoginComponent() {
           })
           .then((res) => {
             const token = res.data.token
-            dispatch({ type: 'Login', token })
+            dispatch({ type: 'TOKEN/LOGIN', token })
             navigate('/')
           })
       } catch (err) {

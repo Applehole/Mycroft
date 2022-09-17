@@ -10,8 +10,8 @@ function Items({ stuff }) {
   }
   return (
     <div className="ItemsDiv" onClick={goToDetailPage}>
-      <div className="ItemsID">{stuff.id}</div>
-      <div className="ItemName">{stuff.itemName}</div>
+      <div className="ItemsID">ID: {stuff.id}</div>
+      <div className="ItemName">Items: {stuff.itemName}</div>
     </div>
   )
 }
