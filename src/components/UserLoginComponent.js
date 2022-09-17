@@ -29,7 +29,7 @@ function UserLoginComponent() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch({ type: 'COUNT/CHANGE', number: 1 })
+    dispatch({ type: 'COUNT/CHANGE', number: 2 })
   }, []) // 그냥 넣으면 무한 리렌더링
 
   const onSubmit = (e) => {

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 function PictureUpload() {
   const [imageUrl, setImageUrl] = useState(null)
   const imgRef = useRef()
-  const Token = useSelector((state) => state)
+  const Token = useSelector((state) => state.token)
   let navigate = useNavigate()
   const dispatch = useDispatch()
 

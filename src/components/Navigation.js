@@ -7,8 +7,6 @@ import { v4 as uuidv4 } from 'uuid' // 유니크한 값이 없어서 넣어줬�
 function Navigation() {
   const Token = useSelector((state) => state.token)
   const { count } = useSelector((state) => state.counter)
-  console.log('Token', Token)
-  console.log('count', count)
 
   const loginState = [
     { name: '홈페이지', link: '/' },
@@ -17,8 +15,8 @@ function Navigation() {
   ]
   const logoutState = [
     { name: '홈페이지', link: '/' },
-    { name: '로그인', link: '/login' },
     { name: '회원가입', link: '/sign-up' },
+    { name: '로그인', link: '/login' },
   ]
   return (
     <>

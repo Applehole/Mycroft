@@ -25,7 +25,7 @@ function UserSignUpComponent() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch({ type: 'COUNT/CHANGE', number: 2 })
+    dispatch({ type: 'COUNT/CHANGE', number: 1 })
   }, []) // 그냥 넣으면 무한 리렌더링
 
   const onChange = (e) => {
@@ -64,7 +64,7 @@ function UserSignUpComponent() {
               })
               .then((res) => {
                 const token = res.data.token
-                dispatch({ type: 'Login', token })
+                dispatch({ type: 'TOKEN/LOGIN', token })
                 navigate('/')
               })
           } catch (err) {
