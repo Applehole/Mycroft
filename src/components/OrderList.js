@@ -13,8 +13,8 @@ function OrderList() {
 
   useEffect(() => {
     const userApiOrder = () => {
-      setTimeout(function () {
-        axios
+      setTimeout(async function () {
+        await axios
           .get(
             `https://mycroft-test-api.herokuapp.com/order?page=${currentPage}`,
           )
