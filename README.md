@@ -1,6 +1,6 @@
 - **사용한 스택: React**
 - **사용한 라이브러리 : styled-Components, Redux, Axios, Font-Awesome, uuid**
-- **요청한 요구사항 전부 해결 완료**
+- **요구사항 전부 해결 완료**
 - **작업한 기간 : 9/15~9/17**
 - **CSS작업 추가**
 
