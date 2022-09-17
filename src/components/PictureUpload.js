@@ -13,7 +13,7 @@ function PictureUpload() {
 
   useEffect(() => {
     dispatch({ type: 'COUNT/CHANGE', number: 0 })
-  }, [])
+  })
 
   const onChangeImage = () => {
     const reader = new FileReader()
@@ -23,7 +23,6 @@ function PictureUpload() {
     reader.readAsDataURL(file)
     reader.onloadend = () => {
       setImageUrl(reader.result)
-      console.log('이미지주소', reader.result)
     }
   }
 
@@ -42,7 +41,8 @@ function PictureUpload() {
       <div className="pictureCover">
         <img
           className="picturePlace"
-          src={imageUrl ? imageUrl : 'pelican.png'}></img>
+          src={imageUrl ? imageUrl : 'pelican.png'}
+          alt="pelican"></img>
         <input type="file" ref={imgRef} onChange={onChangeImage}></input>
       </div>
       <button onClick={orderPicture} className="PictureSubmitButton">

@@ -26,7 +26,7 @@ function UserSignUpComponent() {
 
   useEffect(() => {
     dispatch({ type: 'COUNT/CHANGE', number: 1 })
-  }, []) // 그냥 넣으면 무한 리렌더링
+  }) // 그냥 넣으면 무한 리렌더링
 
   const onChange = (e) => {
     if (e.target.name === 'email') {

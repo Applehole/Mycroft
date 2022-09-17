@@ -14,7 +14,7 @@ function OrderDetail({ ItemId }) {
         setId(res.data.id)
         setItem(res.data.itemName)
       })
-  }, [])
+  })
   const date = new Date(new Date().getTime())
   const Year = date.getFullYear()
   const month = date.getMonth()

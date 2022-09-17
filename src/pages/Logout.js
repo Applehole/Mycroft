@@ -10,7 +10,7 @@ function Logout() {
 
   useEffect(() => {
     dispatch({ type: 'COUNT/CHANGE', number: 2 })
-  }, []) // 그냥 넣으면 무한 리렌더링
+  }) // 그냥 넣으면 무한 리렌더링
 
   const logoutFunction = () => {
     alert('로그아웃 되었습니다.')
