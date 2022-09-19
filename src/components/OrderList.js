@@ -9,7 +9,6 @@ import { v4 as uuidv4 } from 'uuid' // 유니크한 값이 없어서 넣어줬�
 
 function OrderList() {
   const [content, setContect] = useState([])
-  const [ErrorPrevent, setErrorPrevent] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
   const [totalPage, setTotalPage] = useState(2) // 처음에는 3까지였지만 마지막 3번 페이지가 비어져있어서 2로 고쳤다.
   const dispatch = useDispatch()
@@ -23,13 +22,12 @@ function OrderList() {
           )
           .then((res) => {
             setContect(res.data.content)
-            setCurrentPage(res.data.currentPage)
             setTotalPage(res.data.totalPages)
           })
       }, 1000)
     }
     userApiOrder()
-  }, [ErrorPrevent])
+  }, [currentPage])
 
   useEffect(() => {
     dispatch({ type: 'COUNT/CHANGE', number: 1 })
@@ -39,14 +37,12 @@ function OrderList() {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1)
       setContect([])
-      setErrorPrevent((prev) => prev + 1)
     }
   }
   const goToRight = () => {
     if (currentPage < 2) {
       setCurrentPage(currentPage + 1)
       setContect([])
-      setErrorPrevent((prev) => prev + 1)
     }
   }
 
