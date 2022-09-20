@@ -15,7 +15,6 @@ function OrderList() {
 
   useEffect(() => {
     const userApiOrder = () => {
-      setTimeout(async function () {
         await axios
           .get(
             `https://mycroft-test-api.herokuapp.com/order?page=${currentPage}`,
@@ -24,7 +23,6 @@ function OrderList() {
             setContect(res.data.content)
             setTotalPage(res.data.totalPages)
           })
-      }, 1000)
     }
     userApiOrder()
   }, [currentPage])
